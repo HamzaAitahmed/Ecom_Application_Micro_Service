@@ -34,6 +34,7 @@ class BillRestController{
             pi.setProduct(inventoryServiceClient.findProductById(pi.getProductID()));
         });
         return bill;
+
     }
 
 }
