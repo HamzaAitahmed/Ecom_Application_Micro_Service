@@ -20,7 +20,13 @@ public class InventoryServiceApplication {
         return args -> {
             productRepository.save(new Product(null,"Computer Desk Top HP",900));
             productRepository.save(new Product(null,"Printer Epson",80));
-            productRepository.save(new Product(null,"MacBook Pro Lap Top",1800));
+            productRepository.save(new Product(null,"Pc Deskptop",19999));
+            productRepository.save(new Product(null,"Pc Portable",29999));
+            productRepository.save(new Product(null,"Impriment",2599));
+            productRepository.save(new Product(null,"MacBook Pro Lap Top",11800));
+            productRepository.save(new Product(null,"Tv 4K",20000));
+            productRepository.save(new Product(null,"Monitor",8000));
+            productRepository.save(new Product(null,"Mobile",9999));
             productRepository.findAll().forEach(System.out::println);
         };
 
