@@ -6,16 +6,21 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import {provideHttpClient} from '@angular/common/http';
 import { CustomersComponent } from './customers/customers.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BillingsComponent } from './billings/billings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    CustomersComponent
+    CustomersComponent,
+    BillingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]

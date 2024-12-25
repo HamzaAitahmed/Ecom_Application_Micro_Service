@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Customer} from '../model/customer.model';
+import {CustomerService} from '../Services/customer.service';
 
 @Component({
   selector: 'app-customers',
@@ -9,14 +11,48 @@ import {HttpClient} from '@angular/common/http';
   styleUrl: './customers.component.css'
 })
 export class CustomersComponent implements OnInit{
-  customers : any;
-  constructor(private http:HttpClient) { }
+  public customersNotFiltred: any;
+  public customers: Array<Customer> = [];
+  public keyWord: string=""
+  constructor(private http:HttpClient, private customerService:CustomerService) {}
+
   ngOnInit(): void {
-    this.http.get("http://localhost:9999/CUSTOMER-SERVICE/customers?projection=fullCustomer").subscribe({
-      next : (data) => {
-        this.customers = data;
+    this.getCustomer();
+
+  }
+
+  getCustomer(){
+    this.customerService.getCustomers().subscribe({
+      next : data => {
+        this.customersNotFiltred = data;
+        this.customers = this.customersNotFiltred._embedded.customers; // remove embbed and to initialize list of customers directly
       },
       error : (err)=>{}
     });
+  }
+
+  deleteCustomer(p: Customer) {
+    this.customerService.deleteCustomer(p).subscribe({
+      next : data => {
+        let index = this.customers.indexOf(data)
+        this.customers.splice(index,1) ;
+      },
+      error : (err)=>{ }
+    });
+  }
+
+  searchCustomers() {
+    let result= [];
+    if(this.keyWord=="")
+    {
+      this.getCustomer();
+    }
+    for(let p of this.customers)
+    {
+      if(p.name.includes(this.keyWord)){
+        result.push(p);
+      }
+    }
+    this.customers = result;
   }
 }
