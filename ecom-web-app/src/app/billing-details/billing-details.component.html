@@ -1,0 +1,75 @@
+<div class="container mt-2" *ngIf="billDetails">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Bill Id : {{billDetails.id}}</div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">Customer Id : {{billDetails.customer.id}}</li>
+            <li class="list-group-item">Customer Name : {{billDetails.customer.name}}</li>
+            <li class="list-group-item">Customer Email : {{billDetails.customer.email}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Product Items</div>
+        <div class="card-body">
+          <table class="table" >
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>productID</th>
+              <th>price</th>
+              <th>quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pd of this.billDetails.productItems">
+              <td>{{pd.id}}</td>
+              <td>{{pd.price}}</td>
+              <td>{{pd.price}}</td>
+              <td>{{pd.quantity}}</td>
+            </tr>
+            <tr>
+              <td colspan="2"  > </td>
+              <td >Total</td>
+              <td>{{billDetails.totalPrice}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  pourquoi il y a un erreur dans la console ????? -->
+
+<!--<div class="col-md-6">-->
+<!--  <div class="card">-->
+<!--    <div class="card-header">Product Items</div>-->
+<!--    <div class="card-body">-->
+<!--      <table class="table" >-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th>ID</th>-->
+<!--          <th>productID</th>-->
+<!--          <th>price</th>-->
+<!--          <th>quantity</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--&lt;!&ndash;        <tr *ngFor="let pd of this.billDetails.productItems">&ndash;&gt;-->
+<!--        <tr *ngFor="let pd of this.prdIt">-->
+<!--          <td>{{pd.id}}</td>-->
+<!--          <td>{{pd.price}}</td>-->
+<!--          <td>{{pd.price}}</td>-->
+<!--          <td>{{pd.quantity}}</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

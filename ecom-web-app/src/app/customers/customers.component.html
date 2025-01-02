@@ -12,7 +12,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Action</th>
+          <th colspan="2" class="border-dark" >Action</th>
         </tr>
         </thead>
         <tbody>
@@ -21,11 +21,11 @@
           <td>{{p.name}}</td>
           <td>{{p.email}}</td>
           <td>
-            <button (click)="deleteCustomer(p)" class="btn btn-danger" >Delete</button>
+            <button (click)="deleteCustomer(p)" class="btn btn-danger m-2" >Delete</button>
           </td>
-          <!--        <td>-->
-          <!--          <button (click)="deleteProduct()" class="btn btn-outline-success" >Delete</button>-->
-          <!--        </td>-->
+          <td>
+            <button (click)="gotoBills(p)" class="btn btn-outline-primary" >Customer Bills</button>
+          </td>
         </tr>
         </tbody>
       </table>

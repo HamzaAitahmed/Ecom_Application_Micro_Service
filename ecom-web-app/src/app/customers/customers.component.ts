@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Customer} from '../model/customer.model';
 import {CustomerService} from '../Services/customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -14,7 +15,7 @@ export class CustomersComponent implements OnInit{
   public customersNotFiltred: any;
   public customers: Array<Customer> = [];
   public keyWord: string=""
-  constructor(private http:HttpClient, private customerService:CustomerService) {}
+  constructor(private http:HttpClient, private customerService:CustomerService, private router:Router) {}
 
   ngOnInit(): void {
     this.getCustomer();
@@ -29,6 +30,11 @@ export class CustomersComponent implements OnInit{
       },
       error : (err)=>{}
     });
+  }
+
+  gotoBills(customer:Customer)
+  {
+    this.router.navigateByUrl("/billing-Customer/"+customer.id)
   }
 
   deleteCustomer(p: Customer) {

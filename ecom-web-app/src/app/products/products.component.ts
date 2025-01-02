@@ -17,12 +17,22 @@ export class ProductsComponent implements OnInit{
   constructor(private http:HttpClient, private productService:ProductService) {}
 
   ngOnInit(): void {
-    this.getProduct();
-
+    // this.getProduct();
+    this.getProductsByPage();
   }
 
   getProduct(){
     this.productService.getProducts().subscribe({
+      next : data => {
+        this.productsNotFiltred = data;
+        this.products = this.productsNotFiltred._embedded.products; // remove embbed and to initialize list of products directly
+      },
+      error : (err)=>{}
+    });
+  }
+
+  getProductsByPage(){
+    this.productService.getProductsByPage(0,2).subscribe({
       next : data => {
         this.productsNotFiltred = data;
         this.products = this.productsNotFiltred._embedded.products; // remove embbed and to initialize list of products directly

@@ -20,6 +20,14 @@ public class Bill {
     @Transient
     private Customer customer;
 
+    public double getTotalPrice() {
+        double totalPrice = 0.0;
+        for (ProductItem productItem : productItems) {
+            totalPrice += productItem.getPrice();
+        }
+        return totalPrice;
+    }
+
     @OneToMany(mappedBy = "bill")
     private Collection<ProductItem> productItems;
 

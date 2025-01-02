@@ -8,13 +8,17 @@ import {provideHttpClient} from '@angular/common/http';
 import { CustomersComponent } from './customers/customers.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BillingsComponent } from './billings/billings.component';
+import { BillingDetailsComponent } from './billing-details/billing-details.component';
+import { BillingCustomerComponent } from './billing-customer/billing-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     CustomersComponent,
-    BillingsComponent
+    BillingsComponent,
+    BillingDetailsComponent,
+    BillingCustomerComponent
   ],
   imports: [
     BrowserModule,

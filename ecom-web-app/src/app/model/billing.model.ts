@@ -1,10 +1,12 @@
-import {Product} from './product.model';
 import {Customer} from './customer.model';
+import {ProductItem} from './ProductItem.model';
 
 export interface Billing{
-  id: number,
-  billingDate: Date;
-  customerID: number;
-  customer:Customer;
-  productItem:Array<Product>;
+  id: number
+  billingDate:string
+  customerID: number
+  customer:Customer
+  quantity: number
+  productItems:ProductItem[]
+  totalPrice:number
 }

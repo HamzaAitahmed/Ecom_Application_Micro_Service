@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
+import {Billing} from '../model/billing.model';
 import {HttpClient} from '@angular/common/http';
 import {BillingService} from '../Services/billing.service';
-import {Billing} from '../model/billing.model';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-billings',
+  selector: 'app-billing-customer',
   standalone: false,
-  templateUrl: './billings.component.html',
-  styleUrl: './billings.component.css'
+
+  templateUrl: './billing-customer.component.html',
+  styleUrl: './billing-customer.component.css'
 })
-export class BillingsComponent implements OnInit{
+export class BillingCustomerComponent implements OnInit{
   public billsNotFiltred: any;
   public bills: Array<Billing> = [];
   public customerId: number
@@ -20,13 +21,18 @@ export class BillingsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getBills()
+    this.getBillByCustomer(this.customerId);
   }
 
-  getBills(){
-    this.billService.getBillings().subscribe({
+  getBillByCustomer(customerId:number){
+    this.billService.getBillByCustomer(customerId).subscribe({
       next : data => {
-        this.bills= data;
+        console.log("data : ")
+        console.log(data)
+        this.billsNotFiltred = data;
+        this.bills = this.billsNotFiltred._embedded.bills;
+        console.log("this.bills : ")
+        console.log(this.bills)
       },
       error : (err)=>{}
     });
@@ -47,18 +53,4 @@ export class BillingsComponent implements OnInit{
     });
   }
 
-  // searchProducts() {
-  //   let result= [];
-  //   if(this.keyWord=="")
-  //   {
-  //     this.ge();
-  //   }
-  //   for(let p of this.bills)
-  //   {
-  //     if(p.id.includes(this.keyWord)){
-  //       result.push(p);
-  //     }
-  //   }
-  //   this.bills = result;
-  // }
 }

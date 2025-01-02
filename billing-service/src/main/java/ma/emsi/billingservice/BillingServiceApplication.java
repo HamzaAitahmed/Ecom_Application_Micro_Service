@@ -36,6 +36,7 @@ public class BillingServiceApplication {
                 Bill bill=new Bill();
                 bill.setBillingDate(new Date());
                 bill.setCustomerID(customer.getId());
+                bill.setCustomer(customerServiceClient.findCustomerById((long)i));
                 Bill savedBill = billRepository.save(bill);
                 System.out.println("# Saved BILL : "+savedBill);
                 List<Product> listProduct = inventoryServiceClient.allProducts().getContent().stream().toList();
